@@ -28,6 +28,8 @@ public class UserServiceImpl implements UserService {
 		user.setFirstName(userDTO.getFirstName());
 		user.setEmail(userDTO.getEmail());
 		user.setImage("NO image");
+		user.setPassword(userDTO.getPassword());
+		user.setPhone(userDTO.getPhone());
 		userRepository.save(user);
 		return ResponseEntity.status(HttpStatus.CREATED).body("User has been created! ");
 	}
