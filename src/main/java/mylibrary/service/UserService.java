@@ -1,5 +1,7 @@
 package mylibrary.service;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,5 +13,6 @@ public interface UserService {
 
 	public User uploadPhoto (int userId, MultipartFile  file ) throws Exception;
 	public User getUserById(int id) throws Exception;
+	public List<User> getAllUsers();
 
 }

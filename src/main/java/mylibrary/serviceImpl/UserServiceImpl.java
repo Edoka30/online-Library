@@ -2,6 +2,7 @@ package mylibrary.serviceImpl;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public ResponseEntity createUser(UserDTO userDTO) throws Exception {
 		User user = new User();
+		User validateUser = userRepository.findByEmail(userDTO.getEmail());
+		if (validateUser != null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body(" Email " + userDTO.getEmail() + "  already Exist");
+		}
 		user.setSurname(userDTO.getSurname());
 		user.setFirstName(userDTO.getFirstName());
 		user.setEmail(userDTO.getEmail());
@@ -32,6 +38,7 @@ public class UserServiceImpl implements UserService {
 		user.setPhone(userDTO.getPhone());
 		userRepository.save(user);
 		return ResponseEntity.status(HttpStatus.CREATED).body("User has been created! ");
+
 	}
 
 	public User uploadPhoto(int userId, MultipartFile file) throws Exception {
@@ -61,4 +68,11 @@ public class UserServiceImpl implements UserService {
 		}
 		return checkUser;
 	}
+	
+	public List<User> getAllUsers(){
+		
+		return userRepository.findAll();
+	}
+	
+	
 }

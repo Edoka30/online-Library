@@ -8,4 +8,6 @@ import mylibrary.entities.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	public User findById(int userid);
 
+	public User findByEmail(String email);
+
 }

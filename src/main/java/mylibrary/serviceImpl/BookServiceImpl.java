@@ -80,6 +80,7 @@ public class BookServiceImpl implements BookService {
 		String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
 		Path path = Paths.get("C:/uploads/" + fileName);
 		Files.write(path, file.getBytes());
+		
 
 		Books addbook = new Books();
 		// userData.setCoverImage(fileName);
